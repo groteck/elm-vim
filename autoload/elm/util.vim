@@ -109,13 +109,21 @@ fun! elm#util#EchoStored() abort
   endif
 endf
 
-function! elm#util#GoToModule(name)
+function! elm#util#GoToModule(name, method)
   if empty(a:name) | return | endif
+
+  if empty(a:method)
+    let l:method = 'edit'
+  else
+    let l:method = a:method
+  endif
+
   if empty(matchstr(a:name, '^Native\.'))
     let l:extension = '.elm'
   else
     let l:extension = '.js'
   endif
+
   let l:rel_path = substitute(a:name, '\.', '/', 'g') . l:extension
   let l:root = elm#FindRootDirectory()
 
@@ -125,7 +133,7 @@ function! elm#util#GoToModule(name)
   endif
 
   if filereadable(l:module_file)
-    exec 'edit ' . fnameescape(l:module_file)
+    exec l:method . fnameescape(l:module_file)
   else
     return s:error("Can't find module \"" . a:name . "\"")
   endif

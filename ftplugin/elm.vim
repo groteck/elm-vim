@@ -73,7 +73,9 @@ if get(g:, 'elm_setup_keybindings', 1)
 endif
 
 " Better gf command
-nmap <buffer> gf :call elm#util#GoToModule(expand('<cfile>'))<CR>
+nmap <buffer> gf :call elm#util#GoToModule(expand('<cfile>'), 'edit')<CR>
+nmap <buffer> <c-w>f :call elm#util#GoToModule(expand('<cfile>', 'vsp'))<CR>
+nmap <buffer> <c-w>gf :call elm#util#GoToModule(expand('<cfile>', 'tabe'))<CR>
 
 " Elm code formatting on save
 if get(g:, 'elm_format_autosave', 1)
