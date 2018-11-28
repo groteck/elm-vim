@@ -133,7 +133,7 @@ function! elm#util#GoToModule(name, method)
   endif
 
   if filereadable(l:module_file)
-    exec l:method . fnameescape(l:module_file)
+    exec fnameescape(l:method) . ' ' . fnameescape(l:module_file)
   else
     return s:error("Can't find module \"" . a:name . "\"")
   endif
