@@ -23,6 +23,8 @@ syn match elmBraces  "[()[\]{}]"
 
 " Functions
 syn match elmTupleFunction "\((,\+)\)"
+syn match elmLambdaFunc /\\.*->/hs=s+1,he=e-1
+
 
 " Comments
 syn keyword elmTodo TODO FIXME XXX contained
@@ -75,6 +77,7 @@ hi def link elmAlias Delimiter
 hi def link elmOperator Operator
 hi def link elmType Identifier
 hi def link elmNumberType Identifier
+hi def link elmLambdaFunc Function
 
 syn sync minlines=500
 
